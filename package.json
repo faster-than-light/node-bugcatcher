@@ -1,0 +1,24 @@
+{
+  "name": "sohotokenlabs-api",
+  "version": "1.0.0",
+  "description": "Client module for communicating with the SoHo Token Labs backend API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SoHoTokenLabs/sohotokenlabs-api.git"
+  },
+  "keywords": [
+    "solidity",
+    "truffle",
+    "smart contracts"
+  ],
+  "author": "Reuven Etzion",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoHoTokenLabs/sohotokenlabs-api/issues"
+  },
+  "homepage": "https://github.com/SoHoTokenLabs/sohotokenlabs-api#readme"
+}
