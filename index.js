@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 
-export default function SoHoTokenLabs(options) {
+module.exports = (options = {}) => {
 
   let { API_URI, stlSID } = options
 
@@ -109,7 +109,10 @@ export default function SoHoTokenLabs(options) {
     putCode,
     setSid,
     submitPaymentMethodToken,
-    subscribeToBugCatcher
+    subscribeToBugCatcher,
+    greeter: (name = 'User') => {
+      return `Hey, ${name}!`;
+    }
   }
 
 }

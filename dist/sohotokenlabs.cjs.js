@@ -4,7 +4,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var fetch = _interopDefault(require('node-fetch'));
 
-function SoHoTokenLabs(options) {
+module.exports = (options = {}) => {
 
   let { API_URI, stlSID } = options;
 
@@ -113,9 +113,10 @@ function SoHoTokenLabs(options) {
     putCode,
     setSid,
     submitPaymentMethodToken,
-    subscribeToBugCatcher
+    subscribeToBugCatcher,
+    greeter: (name = 'User') => {
+      return `Hey, ${name}!`;
+    }
   }
 
-}
-
-module.exports = SoHoTokenLabs;
+};
