@@ -7,6 +7,7 @@ var fetch = _interopDefault(require('node-fetch'));
 module.exports = (options = {}) => {
 
   let { API_URI, stlSID } = options;
+  if (!API_URI.endsWith('/')) API_URI += '/';
 
   function setSid(sid) {
     stlSID = sid;
