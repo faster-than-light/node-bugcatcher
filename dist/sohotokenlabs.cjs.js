@@ -2,7 +2,7 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var fetch = _interopDefault(require('node-fetch'));
+var axios = _interopDefault(require('axios'));
 
 module.exports = (options = {}) => {
 
@@ -18,20 +18,23 @@ module.exports = (options = {}) => {
     return get (API_URI + 'get_sid?id_token=' + token)
   }
 
-  function postCode(options) {
-    const { name, code } = options;
-    return post(API_URI + 'code', {
-      name,
-      code,
-    })
+  function getStlSid() {
+    return stlSID
   }
 
-  function putCode(options) {
-    const { name, code, project } = options;
-    return put(API_URI + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
+  function postCode(options) {
+    const { name, code, project = 'project' } = options;
+    return post(API_URI + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
+      name,
       code,
-    })
+    }).catch(err => console.error(
+      '-> HTTP POST Error', 
+      err, 
+      { options }
+    ))
   }
+
+  const putCode = postCode;
 
   async function getCode(options) {
     const { stlId } = options;
@@ -46,18 +49,18 @@ module.exports = (options = {}) => {
     })
   }
 
-  function getRunTests(requestId) {
-    return fetch(API_URI + 'run_tests/' + requestId, {
-      method: 'GET',
-      headers: {
-        'STL-SID': stlSID,
-        'Content-Type': 'text/html',
-        'Access-Control-Request-Method': 'GET',
-        'credentials': 'include',
-        'mode': 'cors',
-      },
-    }).then(res => res.json())
-  }
+  // function getRunTests(requestId) {
+  //   return fetch(API_URI + 'run_tests/' + requestId, {
+  //     method: 'GET',
+  //     headers: {
+  //       'STL-SID': stlSID,
+  //       'Content-Type': 'text/html',
+  //       'Access-Control-Request-Method': 'GET',
+  //       'credentials': 'include',
+  //       'mode': 'cors',
+  //     },
+  //   }).then(res => res.json())
+  // }
 
   function submitPaymentMethodToken(options) {
     return post(API_URI + 'payment_method', options)
@@ -73,42 +76,28 @@ module.exports = (options = {}) => {
 
   // @return Promises resolving to javascript objects
   async function get(url) {
-    return fetch(url, {
-      method: 'GET',
+    return axios.get(url, {
       headers: {
         'STL-SID': stlSID,
       },
-    }).then(res => res.json())
+    })
   }
-  async function post(url, body) {
-    const result = await fetch(url, {
-      method: 'POST',
+  async function post(url, data) {
+    return axios.post(url, data, {
       headers: {
         'STL-SID': stlSID,
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
-    return result.json()
-  }
-  async function put(url, body) {
-    const result = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'STL-SID': stlSID,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
-    return result.json()
+      }
+    })
   }
 
   // return exports
   return {
     addLead,
     getCode,
-    getRunTests,
+    // getRunTests,
     getSid,
+    getStlSid,
     postCode,
     postRunTests,
     putCode,
