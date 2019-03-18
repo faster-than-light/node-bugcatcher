@@ -1,11 +1,13 @@
 # SoHo Token Labs Client API Library
 
-![WIP Badge](https://img.shields.io/badge/version-1.0.1-blue.svg) ![WIP Badge](https://img.shields.io/badge/status-wip-yellowgreen.svg)
+![WIP Badge](https://img.shields.io/badge/version-1.0-blue.svg) ![WIP Badge](https://img.shields.io/badge/status-wip-yellowgreen.svg)
 
 ## Installation &amp; Common Usage
 1 - Install package
 
-`npm install sohotokenlabs-api`
+```
+npm install sohotokenlabs-api
+```
 
 2 - Configure module to work with desired environment
 
