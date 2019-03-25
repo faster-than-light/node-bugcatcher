@@ -49,6 +49,17 @@ module.exports = (options = {}) => {
     })
   }
 
+  function postTestProject(options) {
+    const { 
+      projectName, // required
+      fileName // optional
+    } = options;
+    let uri = API_URI + 'test_project/' + projectName;
+    if (fileName) uri += '/' + fileName;
+    return post(uri)
+  }
+
+
   // function getRunTests(requestId) {
   //   return fetch(API_URI + 'run_tests/' + requestId, {
   //     method: 'GET',
@@ -100,6 +111,7 @@ module.exports = (options = {}) => {
     getStlSid,
     postCode,
     postRunTests,
+    postTestProject,
     putCode,
     setSid,
     submitPaymentMethodToken,
