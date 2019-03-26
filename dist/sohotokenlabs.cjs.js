@@ -4,7 +4,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var axios = _interopDefault(require('axios'));
 
-module.exports = (options = {}) => {
+function index(options = {}) {
 
   let { API_URI, stlSID } = options;
   if (!API_URI.endsWith('/')) API_URI += '/';
@@ -121,4 +121,6 @@ module.exports = (options = {}) => {
     }
   }
 
-};
+}
+
+module.exports = index;

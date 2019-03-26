@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-module.exports = (options = {}) => {
+export default function(options = {}) {
 
   let { API_URI, stlSID } = options
   if (!API_URI.endsWith('/')) API_URI += '/'
