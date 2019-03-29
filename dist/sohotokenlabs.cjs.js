@@ -59,6 +59,14 @@ function index(options = {}) {
     return post(uri)
   }
 
+  function getTestResult(options) {
+    const { 
+      stlid // required
+    } = options;
+    let uri = API_URI + 'test_result/' + stlid;
+    return get(uri)
+  }
+
 
   // function getRunTests(requestId) {
   //   return fetch(API_URI + 'run_tests/' + requestId, {
@@ -109,6 +117,7 @@ function index(options = {}) {
     // getRunTests,
     getSid,
     getStlSid,
+    getTestResult,
     postCode,
     postRunTests,
     postTestProject,
