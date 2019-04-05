@@ -60,22 +60,8 @@ export default function(options = {}) {
       stlid // required
     } = options
     let uri = API_URI + 'test_result/' + stlid
-    return get(uri)
+    return get(uri, { responseType: 'stream' })
   }
-
-
-  // function getRunTests(requestId) {
-  //   return fetch(API_URI + 'run_tests/' + requestId, {
-  //     method: 'GET',
-  //     headers: {
-  //       'STL-SID': stlSID,
-  //       'Content-Type': 'text/html',
-  //       'Access-Control-Request-Method': 'GET',
-  //       'credentials': 'include',
-  //       'mode': 'cors',
-  //     },
-  //   }).then(res => res.json())
-  // }
 
   function submitPaymentMethodToken(options) {
     return post(API_URI + 'payment_method', options)
@@ -90,11 +76,12 @@ export default function(options = {}) {
   }
 
   // @return Promises resolving to javascript objects
-  async function get(url) {
+  async function get(url, options) {
     return axios.get(url, {
       headers: {
         'STL-SID': stlSID,
       },
+      ...options
     })
   }
   async function post(url, data) {
