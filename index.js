@@ -57,10 +57,11 @@ export default function(options = {}) {
 
   function getTestResult(options) {
     const { 
-      stlid // required
+      stlid, // required
+      options: config // optional
     } = options
     let uri = API_URI + 'test_result/' + stlid
-    return get(uri, { responseType: 'stream' })
+    return get(uri, config || { responseType: 'stream' })
   }
 
   function submitPaymentMethodToken(options) {
@@ -77,11 +78,14 @@ export default function(options = {}) {
 
   // @return Promises resolving to javascript objects
   async function get(url, options) {
+    let headers
+    if (options && options.headers) headers = options.headers
     return axios.get(url, {
+      ...options,
       headers: {
         'STL-SID': stlSID,
-      },
-      ...options
+        ...headers
+      }
     })
   }
   async function post(url, data) {
