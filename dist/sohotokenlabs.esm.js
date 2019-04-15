@@ -18,6 +18,11 @@ function index(options = {}) {
     return stlSID
   }
 
+  function getUserData(options) {
+    const { sid } = options;
+    return get(API_URI + 'sid/' + sid)
+  }
+
   function postCode(options) {
     const { name, code, project = 'project' } = options;
     return post(API_URI + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
@@ -105,6 +110,7 @@ function index(options = {}) {
     getSid,
     getStlSid,
     getTestResult,
+    getUserData,
     postCode,
     postRunTests,
     postTestProject,
