@@ -66,6 +66,7 @@ function index(options = {}) {
       options: config // optional
     } = options;
     let uri = API_URI + 'test_result/' + stlid;
+    // if (config && config.format) uri += '&format=' + config.format
     return get(uri, config || { responseType: 'stream' })
   }
 
