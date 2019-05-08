@@ -23,6 +23,15 @@ export default function(options = {}) {
     return get(API_URI + 'sid/' + sid)
   }
 
+  /**
+   * @title PUT/POST Code
+   * @dev For uploading files to the backend with a project name
+   * 
+   * @param {object} options JSON object holding our input properties
+   * @property {options.string} code Base64 encoded file data
+   * @property {options.string} name Filename of posted code
+   * @property {options.string} project Optional name for containing project (default used when empty)
+   */
   function postCode(options) {
     const { name, code, project = 'project' } = options
     return post(API_URI + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
@@ -35,20 +44,10 @@ export default function(options = {}) {
     ))
   }
 
+  /**
+   * @dev PUT & POST should both persist data to the backend
+   */
   const putCode = postCode
-
-  async function getCode(options) {
-    const { stlId } = options
-    return get(API_URI + 'code/' + stlId)
-  }
-
-  function postRunTests(options) {
-    const { code_stlids, test_stlids } = options
-    return post(API_URI + 'run_tests', {
-      code_stlids,
-      test_stlids
-    })
-  }
 
   function postTestProject(options) {
     const { 
@@ -60,14 +59,27 @@ export default function(options = {}) {
     return post(uri)
   }
 
-  function getTestResult(options) {
+  /**
+   * @title GET TEst Results
+   * @dev Get results on a completed test
+   * 
+   * @param {object} _options JSON object holding our input properties
+   * @property {_options.string} stlid Security Identifier of the completed test
+   * @property {_options.object} options Optional JSON object holding request configuration properties
+   *    @note `options` may include properties like `headers`, `responseType`, etc. which will be
+   *        added to the request.
+   * @property {options.object} headers Optional JSON object containing request headers
+   * @property {options.string} responseType Optional XHR `responseType` desired {blob|json}
+   * @property {options.string} format Optional specified response format desired {pdf|json}
+   */
+  function getTestResult(_options) {
     const { 
       stlid, // required
-      options: config // optional
-    } = options
+      options, // optional request options (headers, etc.)
+    } = _options
     let uri = API_URI + 'test_result/' + stlid
-    // if (config && config.format) uri += '&format=' + config.format
-    return get(uri, config || { responseType: 'stream' })
+    // if (options && options.format) uri += '&format=' + options.format
+    return get(uri, options || { responseType: 'stream' })
   }
 
   function submitPaymentMethodToken(options) {
@@ -106,14 +118,11 @@ export default function(options = {}) {
   // return exports
   return {
     addLead,
-    getCode,
-    // getRunTests,
     getSid,
     getStlSid,
     getTestResult,
     getUserData,
     postCode,
-    postRunTests,
     postTestProject,
     putCode,
     setSid,
