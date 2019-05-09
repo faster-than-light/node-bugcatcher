@@ -56,11 +56,11 @@ function index(options = {}) {
    * @param {object} options JSON object holding our input properties
    * @property {options.string} stlid Identifier of the test
    */
-  function getTestProject(options) {
+  function getRunTests(options) {
     const { 
       stlid, // required
     } = options;
-    return get(API_URI + 'test_project/' + stlid)
+    return get(API_URI + 'run_tests/' + stlid)
   }
 
   /**
@@ -153,9 +153,9 @@ function index(options = {}) {
   return {
     addLead,
     deleteProject,
+    getRunTests,
     getSid,
     getStlSid,
-    getTestProject,
     getTestResult,
     getUserData,
     postCode,
