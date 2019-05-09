@@ -49,6 +49,28 @@ function index(options = {}) {
    */
   const putCode = postCode;
 
+  /**
+   * @title GET Test Project
+   * @dev Get the status of a test on a project or a file
+   * 
+   * @param {object} options JSON object holding our input properties
+   * @property {options.string} stlid Identifier of the test
+   */
+  function getTestProject(options) {
+    const { 
+      stlid, // required
+    } = options;
+    return get(API_URI + 'test_project/' + stlid)
+  }
+
+  /**
+   * @title POST Test Project
+   * @dev Initiate a test on a project or a file
+   * 
+   * @param {object} options JSON object holding our input properties
+   * @property {options.string} projectName Name of the project
+   * @property {options.string} fileName Optional filename if running est on 1 file
+   */
   function postTestProject(options) {
     const { 
       projectName, // required
@@ -60,7 +82,7 @@ function index(options = {}) {
   }
 
   /**
-   * @title GET TEst Results
+   * @title GET Test Results
    * @dev Get results on a completed test
    * 
    * @param {object} _options JSON object holding our input properties
@@ -133,6 +155,7 @@ function index(options = {}) {
     deleteProject,
     getSid,
     getStlSid,
+    getTestProject,
     getTestResult,
     getUserData,
     postCode,
