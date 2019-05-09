@@ -41,11 +41,7 @@ function index(options = {}) {
     return post(API_URI + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
       name,
       code,
-    }).catch(err => console.error(
-      '-> HTTP POST Error', 
-      err, 
-      { options }
-    ))
+    })
   }
 
   /**
