@@ -90,7 +90,11 @@ function index(options = {}) {
     return post(API_URI + 'bugcatcher_interest', options)
   }
 
-  // @return Promises resolving to javascript objects
+  function deleteProject(project) {
+    return del(API_URI + '/project/' + project)
+  }
+
+  /** @return Promises resolving to javascript objects */
   async function get(url, options) {
     let headers;
     if (options && options.headers) headers = options.headers;
@@ -110,10 +114,19 @@ function index(options = {}) {
       }
     })
   }
+  async function del(url) {
+    return axios.delete(url, {
+      headers: {
+        'STL-SID': stlSID,
+        'Content-Type': 'application/json',
+      }
+    })
+  }
 
   // return exports
   return {
     addLead,
+    deleteProject,
     getSid,
     getStlSid,
     getTestResult,
