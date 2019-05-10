@@ -24,6 +24,16 @@ export default function(options = {}) {
   }
 
   /**
+   * @title GET Project data
+   * @dev Get file list and other data for a project
+   * 
+   * @param {string} project Name of project being queried
+   */
+  function getProject(project) {
+    return get(API_URI + 'project/' + project)
+  }
+
+  /**
    * @title PUT/POST Code
    * @dev For uploading files to the backend with a project name
    * 
@@ -149,6 +159,7 @@ export default function(options = {}) {
   return {
     addLead,
     deleteProject,
+    getProject,
     getRunTests,
     getSid,
     getStlSid,
