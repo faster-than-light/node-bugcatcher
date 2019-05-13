@@ -30,7 +30,8 @@ export default function(options = {}) {
    * @param {string} project Name of project being queried
    */
   function getProject(project) {
-    return get(API_URI + 'project/' + project)
+    if (!project) return get(API_URI + 'project')
+    else return get(API_URI + 'project/' + project)
   }
 
   /**
