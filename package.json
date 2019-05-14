@@ -1,6 +1,6 @@
 {
   "name": "sohotokenlabs-api",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Client module for communicating with the SoHo Token Labs backend API.",
   "main": "dist/sohotokenlabs.cjs.js",
   "module": "dist/sohotokenlabs.esm.js",

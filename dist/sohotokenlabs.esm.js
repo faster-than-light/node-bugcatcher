@@ -123,8 +123,12 @@ function index(options = {}) {
     return post(API_URI + 'bugcatcher_interest', options)
   }
 
+  function deleteCode(pathToCode) {
+    return del(API_URI + 'project/' + pathToCode)
+  }
+
   function deleteProject(project) {
-    return del(API_URI + '/project/' + project)
+    return del(API_URI + 'project/' + project)
   }
 
   /** @return Promises resolving to javascript objects */
@@ -159,6 +163,7 @@ function index(options = {}) {
   // return exports
   return {
     addLead,
+    deleteCode,
     deleteProject,
     getProject,
     getRunTests,
