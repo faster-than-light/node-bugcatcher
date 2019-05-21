@@ -108,10 +108,11 @@ function index(options = {}) {
   function getTestResult(_options) {
     const { 
       stlid, // required
+      format, // optional {pdf || json(default)} format
       options, // optional request options (headers, etc.)
     } = _options;
     let uri = API_URI + 'test_result/' + stlid;
-    // if (options && options.format) uri += '&format=' + options.format
+    if (format) uri += '&format=' + format;
     return get(uri, options || { responseType: 'stream' })
   }
 
