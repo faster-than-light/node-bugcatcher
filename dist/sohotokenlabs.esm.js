@@ -108,7 +108,7 @@ function index(options = {}) {
       options, // optional request options (headers, etc.)
     } = _options;
     let uri = API_URI + 'test_result/' + stlid;
-    if (format) uri += '&format=' + format;
+    if (format) uri += '?format=' + format;
     return get(uri, options || { responseType: 'stream' })
   }
 
