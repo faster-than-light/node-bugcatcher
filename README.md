@@ -1,4 +1,4 @@
-# SoHo Token Labs Client API Library
+# Faster Than Light Bugcatcher Client API Library
 
 ![WIP Badge](https://img.shields.io/badge/version-1.0-blue.svg) ![WIP Badge](https://img.shields.io/badge/status-wip-yellowgreen.svg)
 
