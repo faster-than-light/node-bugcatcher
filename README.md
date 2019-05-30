@@ -6,14 +6,14 @@
 1 - Install package
 
 ```
-npm install sohotokenlabs-api
+npm install bugcatcher-api
 ```
 
 2 - Configure module to work with desired environment
 
 ```
-const sohotokenlabs = require('sohotokenlabs-api')
-const api = sohotokenlabs('https://api.bugcatcher.sohotokenlabs.com')
+const bugcatcher = require('bugcatcher-api')
+const api = bugcatcher('https://api.bugcatcher.fasterthanlight.dev')
 ```
 
 3 - Consume API endpoints through the initiated NPM package

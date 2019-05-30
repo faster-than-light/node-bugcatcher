@@ -1,34 +1,35 @@
 {
-  "name": "sohotokenlabs-api",
-  "version": "1.0.20",
+  "name": "bugcatcher-api",
+  "version": "1.0.21",
   "description": "Client module for communicating with the SoHo Token Labs backend API.",
-  "main": "dist/sohotokenlabs.cjs.js",
-  "module": "dist/sohotokenlabs.esm.js",
+  "main": "dist/bugcatcher-api.cjs.js",
+  "module": "dist/bugcatcher-api.esm.js",
   "engines": {
     "node": ">=11"
   },
   "scripts": {
     "build": "npm-run-all -p build:*",
-    "build:cjs": "rollup index.js -c rollup.config.js --file dist/sohotokenlabs.cjs.js --format cjs",
-    "build:esm": "rollup index.js -c rollup.config.js --file dist/sohotokenlabs.esm.js --format esm",
+    "build:cjs": "rollup index.js -c rollup.config.js --file dist/bugcatcher-api.cjs.js --format cjs",
+    "build:esm": "rollup index.js -c rollup.config.js --file dist/bugcatcher-api.esm.js --format esm",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/SoHoTokenLabs/sohotokenlabs-api.git"
+    "url": "git+ssh://git@github.com/faster-than-light/bugcatcher-api.git"
   },
   "keywords": [
     "solidity",
     "truffle",
-    "smart contracts"
+    "smart contracts",
+    "static analysis"
   ],
   "author": "Reuven Etzion",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SoHoTokenLabs/sohotokenlabs-api/issues"
+    "url": "https://github.com/faster-than-light/bugcatcher-api/issues"
   },
-  "homepage": "https://github.com/SoHoTokenLabs/sohotokenlabs-api#readme",
+  "homepage": "https://github.com/faster-than-light/bugcatcher-api#readme",
   "dependencies": {
     "axios": "^0.18.0"
   },
