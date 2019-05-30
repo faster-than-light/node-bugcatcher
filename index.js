@@ -1,9 +1,8 @@
 import axios from 'axios'
 
-export default function(options = {}) {
+export default function(apiUri, stlSID) {
 
-  let { API_URI, stlSID } = options
-  if (!API_URI.endsWith('/')) API_URI += '/'
+  if (!apiUri.endsWith('/')) apiUri += '/'
 
   function setSid(sid) {
     stlSID = sid
@@ -11,7 +10,7 @@ export default function(options = {}) {
 
   function getSid(options) {
     const { token } = options
-    return get (API_URI + 'get_sid?id_token=' + token)
+    return get (apiUri + 'get_sid?id_token=' + token)
   }
 
   function getStlSid() {
@@ -20,7 +19,7 @@ export default function(options = {}) {
 
   function getUserData(options) {
     const { sid } = options
-    return get(API_URI + 'sid/' + sid)
+    return get(apiUri + 'sid/' + sid)
   }
 
   /**
@@ -30,8 +29,8 @@ export default function(options = {}) {
    * @param {string} project Name of project being queried
    */
   function getProject(project) {
-    if (!project) return get(API_URI + 'project')
-    else return get(API_URI + 'project/' + project)
+    if (!project) return get(apiUri + 'project')
+    else return get(apiUri + 'project/' + project)
   }
 
   /**
@@ -45,7 +44,7 @@ export default function(options = {}) {
    */
   function postCode(options) {
     const { name, code, project = 'project' } = options
-    return post(API_URI + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
+    return post(apiUri + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
       name,
       code,
     })
@@ -67,7 +66,7 @@ export default function(options = {}) {
     const { 
       stlid, // required
     } = options
-    return get(API_URI + 'run_tests/' + stlid)
+    return get(apiUri + 'run_tests/' + stlid)
   }
 
   /**
@@ -83,7 +82,7 @@ export default function(options = {}) {
       projectName, // required
       fileName // optional
     } = options
-    let uri = API_URI + 'test_project/' + projectName
+    let uri = apiUri + 'test_project/' + projectName
     if (fileName) uri += '/' + fileName
     return post(uri)
   }
@@ -107,29 +106,29 @@ export default function(options = {}) {
       format, // optional {pdf || json(default)} format
       options, // optional request options (headers, etc.)
     } = _options
-    let uri = API_URI + 'test_result/' + stlid
+    let uri = apiUri + 'test_result/' + stlid
     if (format) uri += '?format=' + format
     return get(uri, options || { responseType: 'stream' })
   }
 
   function submitPaymentMethodToken(options) {
-    return post(API_URI + 'payment_method', options)
+    return post(apiUri + 'payment_method', options)
   }
 
   function subscribeToBugCatcher(options) {
-    return post(API_URI + 'subscription', options)
+    return post(apiUri + 'subscription', options)
   }
 
   function addLead(options) {
-    return post(API_URI + 'bugcatcher_interest', options)
+    return post(apiUri + 'bugcatcher_interest', options)
   }
 
   function deleteCode(pathToCode) {
-    return del(API_URI + 'project/' + pathToCode)
+    return del(apiUri + 'project/' + pathToCode)
   }
 
   function deleteProject(project) {
-    return del(API_URI + 'project/' + project)
+    return del(apiUri + 'project/' + project)
   }
 
   /** @return Promises resolving to javascript objects */

@@ -1,6 +1,6 @@
 {
   "name": "bugcatcher-api",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Client module for communicating with the Faster Than Light BugCatcher backend API.",
   "main": "dist/bugcatcher-api.cjs.js",
   "module": "dist/bugcatcher-api.esm.js",
@@ -19,12 +19,10 @@
     "url": "git+ssh://git@github.com/faster-than-light/bugcatcher-api.git"
   },
   "keywords": [
-    "solidity",
-    "truffle",
-    "smart contracts",
-    "static analysis"
+    "Python",
+    "Solidity"
   ],
-  "author": "Reuven Etzion",
+  "author": "Faster Than Light",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/faster-than-light/bugcatcher-api/issues"
