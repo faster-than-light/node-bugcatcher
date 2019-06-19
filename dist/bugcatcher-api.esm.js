@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-function index(options = {}) {
+function index(apiUri, stlSID) {
 
-  let { API_URI, stlSID } = options;
-  if (!API_URI.endsWith('/')) API_URI += '/';
+  /** @deprecate This is how the param used to be sent in an object */
+  if (typeof apiUri === 'object') apiUri = apiUri.API_URI;
+
+  if (!apiUri.endsWith('/')) apiUri += '/';
 
   function setSid(sid) {
     stlSID = sid;
@@ -11,7 +13,7 @@ function index(options = {}) {
 
   function getSid(options) {
     const { token } = options;
-    return get (API_URI + 'get_sid?id_token=' + token)
+    return get (apiUri + 'get_sid?id_token=' + token)
   }
 
   function getStlSid() {
@@ -20,7 +22,7 @@ function index(options = {}) {
 
   function getUserData(options) {
     const { sid } = options;
-    return get(API_URI + 'sid/' + sid)
+    return get(apiUri + 'sid/' + sid)
   }
 
   /**
@@ -30,8 +32,8 @@ function index(options = {}) {
    * @param {string} project Name of project being queried
    */
   function getProject(project) {
-    if (!project) return get(API_URI + 'project')
-    else return get(API_URI + 'project/' + project)
+    if (!project) return get(apiUri + 'project')
+    else return get(apiUri + 'project/' + project)
   }
 
   /**
@@ -45,7 +47,7 @@ function index(options = {}) {
    */
   function postCode(options) {
     const { name, code, project = 'project' } = options;
-    return post(API_URI + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
+    return post(apiUri + 'project/' + encodeURIComponent(project) + '/' + encodeURIComponent(name), {
       name,
       code,
     })
@@ -67,7 +69,7 @@ function index(options = {}) {
     const { 
       stlid, // required
     } = options;
-    return get(API_URI + 'run_tests/' + stlid)
+    return get(apiUri + 'run_tests/' + stlid)
   }
 
   /**
@@ -83,7 +85,7 @@ function index(options = {}) {
       projectName, // required
       fileName // optional
     } = options;
-    let uri = API_URI + 'test_project/' + projectName;
+    let uri = apiUri + 'test_project/' + projectName;
     if (fileName) uri += '/' + fileName;
     return post(uri)
   }
@@ -107,30 +109,50 @@ function index(options = {}) {
       format, // optional {pdf || json(default)} format
       options, // optional request options (headers, etc.)
     } = _options;
-    let uri = API_URI + 'test_result/' + stlid;
+    let uri = apiUri + 'test_result/' + stlid;
     if (format) uri += '?format=' + format;
     return get(uri, options || { responseType: 'stream' })
   }
 
   function submitPaymentMethodToken(options) {
-    return post(API_URI + 'payment_method', options)
+    return post(apiUri + 'payment_method', options)
   }
 
   function subscribeToBugCatcher(options) {
-    return post(API_URI + 'subscription', options)
+    return post(apiUri + 'subscription', options)
   }
 
   function addLead(options) {
-    return post(API_URI + 'bugcatcher_interest', options)
+    return post(apiUri + 'bugcatcher_interest', options)
   }
 
   function deleteCode(pathToCode) {
-    return del(API_URI + 'project/' + pathToCode)
+    return del(apiUri + 'project/' + pathToCode)
   }
 
   function deleteProject(project) {
-    return del(API_URI + 'project/' + project)
+    return del(apiUri + 'project/' + project)
   }
+
+  /**
+   * @title PUT/POST Annotation
+   * @dev For adding notes to the results of tests 
+   * 
+   * @uri `PUT` or `POST` to `/test_run_result/<test_run_result_id>`
+   * @param {uri.param} testResultId Test ID to be used in the API URI
+   * @param {object} options JSON object holding our input properties
+   * @property {options.string} annotation The annotation to be saved for the `test_run_result_id`
+   */
+  function postAnnotation(options) {
+    const { annotation, testResultId } = options;
+    return post(`${apiUri}test_run_result/${testResultId}`, { annotation })
+  }
+
+  /**
+   * @dev PUT & POST should both persist data to the backend
+   */
+  const putAnnotation = postAnnotation;
+
 
   /** @return Promises resolving to javascript objects */
   async function get(url, options) {
@@ -172,8 +194,10 @@ function index(options = {}) {
     getStlSid,
     getTestResult,
     getUserData,
+    postAnnotation,
     postCode,
     postTestProject,
+    putAnnotation,
     putCode,
     setSid,
     submitPaymentMethodToken,

@@ -1,6 +1,6 @@
 {
   "name": "bugcatcher-api",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "Client module for communicating with the Faster Than Light BugCatcher backend API.",
   "main": "dist/bugcatcher-api.cjs.js",
   "module": "dist/bugcatcher-api.esm.js",

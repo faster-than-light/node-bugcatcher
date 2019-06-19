@@ -2,6 +2,9 @@ import axios from 'axios'
 
 export default function(apiUri, stlSID) {
 
+  /** @deprecate This is how the param used to be sent in an object */
+  if (typeof apiUri === 'object') apiUri = apiUri.API_URI
+
   if (!apiUri.endsWith('/')) apiUri += '/'
 
   function setSid(sid) {
@@ -131,6 +134,26 @@ export default function(apiUri, stlSID) {
     return del(apiUri + 'project/' + project)
   }
 
+  /**
+   * @title PUT/POST Annotation
+   * @dev For adding notes to the results of tests 
+   * 
+   * @uri `PUT` or `POST` to `/test_run_result/<test_run_result_id>`
+   * @param {uri.param} testResultId Test ID to be used in the API URI
+   * @param {object} options JSON object holding our input properties
+   * @property {options.string} annotation The annotation to be saved for the `test_run_result_id`
+   */
+  function postAnnotation(options) {
+    const { annotation, testResultId } = options
+    return post(`${apiUri}test_run_result/${testResultId}`, { annotation })
+  }
+
+  /**
+   * @dev PUT & POST should both persist data to the backend
+   */
+  const putAnnotation = postAnnotation
+
+
   /** @return Promises resolving to javascript objects */
   async function get(url, options) {
     let headers
@@ -171,8 +194,10 @@ export default function(apiUri, stlSID) {
     getStlSid,
     getTestResult,
     getUserData,
+    postAnnotation,
     postCode,
     postTestProject,
+    putAnnotation,
     putCode,
     setSid,
     submitPaymentMethodToken,
