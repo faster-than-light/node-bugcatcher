@@ -184,10 +184,11 @@ function index(apiUri, stlSID) {
     })
   }
   async function put(url, data) {
-    return axios({
-      method: 'put',
-      url,
-      data,
+    return axios.put(url, data, {
+      headers: {
+        'STL-SID': stlSID,
+        'Content-Type': 'application/json',
+      }
     })
   }
   async function del(url) {
