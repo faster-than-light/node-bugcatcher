@@ -1,6 +1,6 @@
 {
   "name": "bugcatcher-api",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "Client module for communicating with the Faster Than Light BugCatcher backend API.",
   "main": "dist/bugcatcher-api.cjs.js",
   "module": "dist/bugcatcher-api.esm.js",
@@ -19,6 +19,7 @@
     "url": "git+ssh://git@github.com/faster-than-light/bugcatcher-api.git"
   },
   "keywords": [
+    "Java",
     "Python",
     "Solidity"
   ],

@@ -126,6 +126,11 @@ function index(apiUri, stlSID) {
     return post(apiUri + 'subscription', options)
   }
 
+  function updateSubscriptionStatus(options) {
+    const { stlid, data } = options;
+    return put(`${apiUri}subscription/stlid/${stlid}`, data)
+  }
+
   function addLead(options) {
     return post(apiUri + 'bugcatcher_interest', options)
   }
@@ -178,6 +183,13 @@ function index(apiUri, stlSID) {
       }
     })
   }
+  async function put(url, data) {
+    return axios({
+      method: 'put',
+      url,
+      data,
+    })
+  }
   async function del(url) {
     return axios.delete(url, {
       headers: {
@@ -206,6 +218,7 @@ function index(apiUri, stlSID) {
     setSid,
     submitPaymentMethodToken,
     subscribeToBugCatcher,
+    updateSubscriptionStatus,
     greeter: (name = 'User') => {
       return `Hey, ${name}!`;
     }
