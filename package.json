@@ -1,36 +1,38 @@
 {
-  "name": "bugcatcher-api",
-  "version": "1.0.25",
+  "name": "node-bugcatcher",
+  "version": "1.0.26",
   "description": "Client module for communicating with the Faster Than Light BugCatcher backend API.",
-  "main": "dist/bugcatcher-api.cjs.js",
-  "module": "dist/bugcatcher-api.esm.js",
+  "main": "dist/node-bugcatcher.cjs.js",
+  "module": "dist/node-bugcatcher.esm.js",
   "engines": {
     "node": ">=11"
   },
   "scripts": {
     "build": "npm-run-all -p build:*",
-    "build:cjs": "rollup index.js -c rollup.config.js --file dist/bugcatcher-api.cjs.js --format cjs",
-    "build:esm": "rollup index.js -c rollup.config.js --file dist/bugcatcher-api.esm.js --format esm",
+    "build:cjs": "rollup index.js -c rollup.config.js --file dist/node-bugcatcher.cjs.js --format cjs",
+    "build:esm": "rollup index.js -c rollup.config.js --file dist/node-bugcatcher.esm.js --format esm",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/faster-than-light/bugcatcher-api.git"
+    "url": "git+ssh://git@github.com/faster-than-light/node-bugcatcher.git"
   },
   "keywords": [
     "Java",
     "Python",
-    "Solidity"
+    "Solidity",
+    "Node",
+    "Static Analysis"
   ],
   "author": "Faster Than Light",
-  "license": "ISC",
+  "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/faster-than-light/bugcatcher-api/issues"
+    "url": "https://github.com/faster-than-light/node-bugcatcher/issues"
   },
-  "homepage": "https://github.com/faster-than-light/bugcatcher-api#readme",
+  "homepage": "https://github.com/faster-than-light/node-bugcatcher#readme",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.19.0"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.3",

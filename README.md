@@ -1,21 +1,21 @@
 # Faster Than Light BugCatcher Client API Library
 
-[![npm version](https://badge.fury.io/js/bugcatcher-api.svg)](https://badge.fury.io/js/bugcatcher-api) ![WIP Badge](https://img.shields.io/badge/status-beta-blue.svg)
+[![npm version](https://badge.fury.io/js/node-bugcatcher.svg)](https://badge.fury.io/js/node-bugcatcher) ![WIP Badge](https://img.shields.io/badge/status-beta-blue.svg)
 
 ## Installation &amp; Common Usage
 1 - Install package
 
 ```
-npm install bugcatcher-api
+npm install node-bugcatcher
 ```
 
 2 - Configure module to work with desired environment
 
 ```
-import BugCatcher from 'bugcatcher-api'
+import BugCatcher from 'node-bugcatcher'
 const api = BugCatcher(
   'https://api.bugcatcher.fasterthanlight.dev', // api uri
-  '<stl_sid>' // authentication token
+  '<stl_sid>' // authentication token (optional, can be set after init)
 )
 ```
 
