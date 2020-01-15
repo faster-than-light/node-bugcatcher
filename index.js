@@ -2,8 +2,7 @@ import axios from 'axios'
 
 export default function(apiUri, stlSID) {
 
-  /** @deprecate This is how the param used to be sent in an object */
-  if (typeof apiUri === 'object') apiUri = apiUri.API_URI
+  apiUri = apiUri || "https://api.bugcatcher.fasterthanlight.dev/"
 
   if (!apiUri.endsWith('/')) apiUri += '/'
 
