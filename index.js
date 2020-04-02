@@ -10,6 +10,11 @@ export default function(apiUri, stlSID) {
     stlSID = sid
   }
 
+  function getSidFromGithubToken(options) {
+    const { token } = options
+    return get (apiUri + 'get_sid_from_github_token?id_token=' + token)
+  }
+
   function getSid(options) {
     const { token } = options
     return get (apiUri + 'get_sid?id_token=' + token)
@@ -203,6 +208,7 @@ export default function(apiUri, stlSID) {
     getProject,
     getRunTests,
     getSid,
+    getSidFromGithubToken,
     getStlSid,
     getTestResult,
     getUserData,
