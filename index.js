@@ -12,7 +12,7 @@ export default function(apiUri, stlSID) {
 
   function getSidFromGithubToken(options) {
     const { code, redirectUri, state } = options
-    return get (`${apiUri}get_sid_github?code=${code}&redirect_uri=${redirectUri}&state=${state}`)
+    return get (`${apiUri}get_sid_github?code=${code}&state=${state}&redirect_uri=${redirectUri}`)
   }
 
   function getSid(options) {
