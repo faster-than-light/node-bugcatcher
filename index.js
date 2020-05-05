@@ -140,6 +140,10 @@ export default function(apiUri, stlSID) {
   }
 
   function deleteProject(project) {
+    return asyncDel(apiUri + 'project/' + project)
+  }
+
+  function deleteProjectPromise(project) {
     return del(apiUri + 'project/' + project)
   }
 
@@ -191,7 +195,15 @@ export default function(apiUri, stlSID) {
       }
     })
   }
-  async function del(url) {
+  function del(url) {
+    return axios.delete(url, {
+      headers: {
+        'STL-SID': stlSID,
+        'Content-Type': 'application/json',
+      }
+    })
+  }
+  async function asyncDel(url) {
     return axios.delete(url, {
       headers: {
         'STL-SID': stlSID,
@@ -205,6 +217,7 @@ export default function(apiUri, stlSID) {
     addLead,
     deleteCode,
     deleteProject,
+    deleteProjectPromise,
     getProject,
     getRunTests,
     getSid,
