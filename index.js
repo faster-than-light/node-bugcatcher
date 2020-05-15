@@ -6,6 +6,10 @@ export default function(apiUri, stlSID) {
 
   if (!apiUri.endsWith('/')) apiUri += '/'
 
+  function setApiUrl(uri) {
+    apiUri = uri
+  }
+
   function setSid(sid) {
     stlSID = sid
   }
@@ -230,6 +234,7 @@ export default function(apiUri, stlSID) {
     postTestProject,
     putAnnotation,
     putCode,
+    setApiUrl,
     setSid,
     submitPaymentMethodToken,
     subscribeToBugCatcher,
