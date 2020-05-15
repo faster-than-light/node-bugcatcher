@@ -2,12 +2,11 @@ import axios from 'axios'
 
 export default function(apiUri, stlSID) {
 
-  apiUri = apiUri || "https://api.bugcatcher.fasterthanlight.dev/"
+  setApiUri(apiUri || "https://api.bugcatcher.fasterthanlight.dev/")
 
-  if (!apiUri.endsWith('/')) apiUri += '/'
-
-  function setApiUrl(uri) {
+  function setApiUri(uri) {
     apiUri = uri
+    if (!apiUri.endsWith('/')) apiUri += '/'
   }
 
   function setSid(sid) {
@@ -234,7 +233,7 @@ export default function(apiUri, stlSID) {
     postTestProject,
     putAnnotation,
     putCode,
-    setApiUrl,
+    setApiUri,
     setSid,
     submitPaymentMethodToken,
     subscribeToBugCatcher,
