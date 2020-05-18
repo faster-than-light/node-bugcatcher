@@ -5,8 +5,10 @@ export default function(apiUri, stlSID) {
   setApiUri(apiUri || "https://api.bugcatcher.fasterthanlight.dev/")
 
   function setApiUri(uri) {
-    apiUri = uri
-    if (!apiUri.endsWith('/')) apiUri += '/'
+    if (uri) {
+      apiUri = uri
+      if (!apiUri.endsWith('/')) apiUri += '/'
+    }
   }
 
   function setSid(sid) {

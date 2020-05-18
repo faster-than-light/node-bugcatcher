@@ -1,6 +1,6 @@
 {
   "name": "node-bugcatcher",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "description": "Client module for communicating with the Faster Than Light BugCatcher backend API.",
   "main": "dist/node-bugcatcher.cjs.js",
   "module": "dist/node-bugcatcher.esm.js",
